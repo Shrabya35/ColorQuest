@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/ColorQuest/static/css/main.01a17a81.css",
-    "main.js": "/ColorQuest/static/js/main.0aa62597.js",
+    "main.css": "/ColorQuest/static/css/main.a3063ea5.css",
+    "main.js": "/ColorQuest/static/js/main.5ce1f09a.js",
     "static/js/453.46d70119.chunk.js": "/ColorQuest/static/js/453.46d70119.chunk.js",
     "index.html": "/ColorQuest/index.html",
-    "main.01a17a81.css.map": "/ColorQuest/static/css/main.01a17a81.css.map",
-    "main.0aa62597.js.map": "/ColorQuest/static/js/main.0aa62597.js.map",
+    "main.a3063ea5.css.map": "/ColorQuest/static/css/main.a3063ea5.css.map",
+    "main.5ce1f09a.js.map": "/ColorQuest/static/js/main.5ce1f09a.js.map",
     "453.46d70119.chunk.js.map": "/ColorQuest/static/js/453.46d70119.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.01a17a81.css",
-    "static/js/main.0aa62597.js"
+    "static/css/main.a3063ea5.css",
+    "static/js/main.5ce1f09a.js"
   ]
 }

@@ -1,3 +1,5 @@
+$box-shadow: rgba(0, 0, 0, 0.3);
+$button-colour: #01c8b7;
 .rgb-flex {
     display: flex;
     flex-direction: column;
@@ -11,57 +13,61 @@
     height: 100vh;
     box-sizing: border-box;
     background: linear-gradient(to bottom right, #56CCF2, #2F80ED);
-}
-
-.my-guess::placeholder {
-    text-align: center;
-}
-
-.game {
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-evenly;
-}
-
-.title h1,
-.colour-title {
-    color: whitesmoke;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    text-align: center;
-}
-
-.title p {
-    color: #E5E5E5;
-    font-weight: 600;
-}
-
-.colour-box {
-    height: 10rem;
-    width: 10rem;
-    border-radius: 5px;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.guess-input {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    padding-top: .5rem;
-}
-
-.my-guess {
-    width: 2.25rem;
-    height: 1.5rem;
-    margin-right: .25rem;
-    border: none;
-    outline: none;
-    text-align: center;
-    border-radius: 5px;
-    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
-}
-
-.my-guess::placeholder {
-    text-align: center;
+    .title h1,
+    .colour-title {
+        color: whitesmoke;
+        text-shadow: 2px 2px 4px $box-shadow;
+        text-align: center;
+    }
+    .title p {
+        color: #E5E5E5;
+        font-weight: 600;
+    }
+    .game {
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-evenly;
+        .colour-box {
+            height: 10rem;
+            width: 10rem;
+            border-radius: 5px;
+            box-shadow: 5px 5px 15px $box-shadow;
+        }
+        .reveal {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            padding-top: .5rem;
+            span {
+                padding: .25rem .75rem .25rem .75rem;
+                border-radius: 5px;
+                background: white;
+                text-align: center;
+                display: none;
+                font-weight: 500;
+                box-shadow: 3px 3px 8px $box-shadow;
+            }
+        }
+        .guess-input {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            padding-top: .5rem;
+        }
+        .my-guess {
+            width: 2.25rem;
+            height: 1.5rem;
+            margin-right: .25rem;
+            border: none;
+            outline: none;
+            text-align: center;
+            border-radius: 5px;
+            box-shadow: 3px 3px 8px $box-shadow;
+        }
+        .my-guess::placeholder {
+            text-align: center;
+        }
+    }
 }
 
 button {
@@ -69,25 +75,10 @@ button {
     border: none;
     outline: none;
     cursor: pointer;
-    border-radius: 10px;
-    background: peru;
+    color: white;
+    border-radius: 4rem;
+    background: $button-colour;
+    box-shadow: 3px 3px 8px $box-shadow;
     font-size: 1.5rem;
     font-weight: 800;
-}
-
-.reveal {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    padding-top: .5rem;
-}
-
-.reveal span {
-    padding: .25rem .75rem .25rem .75rem;
-    border-radius: 5px;
-    background: white;
-    text-align: center;
-    cursor: pointer;
-    display: none;
-    font-weight: 500;
 }

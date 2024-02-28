@@ -9,8 +9,18 @@ const ColourGuess = () => {
   const [playerred, setPlayerred] = useState(0);
   const [playergreen, setPlayergreen] = useState(0);
   const [playerblue, setPlayerblue] = useState(0);
-  const btnRef = useRef(null);
   const [revealed, setRevealed] = useState(false);
+  const [over, setOver] = useState(false);
+  const btnRef = useRef(null);
+  const titleRef = useRef(null);
+
+  const handleInputChange = (e, setterFunction) => {
+    let inputValue = parseInt(e.target.value);
+    if (inputValue > 255) {
+      inputValue = 255;
+    }
+    setterFunction(inputValue);
+  };
 
   useEffect(() => {
     setRed(Math.floor(Math.random() * 256));
@@ -18,17 +28,50 @@ const ColourGuess = () => {
     setBlue(Math.floor(Math.random() * 256));
   }, []);
 
+  const match = () => {
+    const matchPercentageRed = calculateMatchPercentage(red, playerred);
+    const matchPercentageGreen = calculateMatchPercentage(green, playergreen);
+    const matchPercentageBlue = calculateMatchPercentage(blue, playerblue);
+
+    const totalpercentage = (
+      (matchPercentageRed + matchPercentageGreen + matchPercentageBlue) /
+      3
+    ).toFixed(2);
+    setRevealed(true);
+    if (totalpercentage < 30) {
+      titleRef.current.innerHTML = `<span class="title" style="color: white;"><h1>Matched = ${totalpercentage} %</h1> 
+      <p style="text-align: center;">Needs more practice</p>
+      </span>`;
+    } else if (totalpercentage > 30 && totalpercentage < 60) {
+      titleRef.current.innerHTML = `<span class="title" style="color: white;"><h1>Matched = ${totalpercentage} %</h1> 
+      <p style="text-align: center;">Good Try</p>
+      </span>`;
+    } else if (totalpercentage > 60 && totalpercentage < 100) {
+      titleRef.current.innerHTML = `<span class="title" style="color: white;"><h1>Matched = ${totalpercentage} %</h1> 
+      <p style="text-align: center;">Excellent Result</p>
+      </span>`;
+    } else if (totalpercentage > 90) {
+      titleRef.current.innerHTML = `<span class="title" style="color: white;"><h1>Matched = ${totalpercentage}</h1> 
+      <p style="text-align: center;">Your RGB knowledge is Beyond Excellence</p>
+      </span>`;
+    }
+    setOver(true);
+  };
+
   const reset = () => {
     window.location.reload();
   };
 
-  const reveal = () => {
-    setRevealed(true);
+  const calculateMatchPercentage = (num1, num2) => {
+    const difference = Math.abs(num1 - num2);
+    const normalizedDifference = difference / 255;
+    const percentageMatch = (1 - normalizedDifference) * 100;
+    return parseFloat(percentageMatch.toFixed(2));
   };
 
   return (
     <div className="container rgb-flex">
-      <div className="title">
+      <div className="title" ref={titleRef}>
         <h1>ColorQuest</h1>
         <p>Test your RGB knowledge by matching the colour</p>
       </div>
@@ -40,11 +83,8 @@ const ColourGuess = () => {
             style={{ background: `rgb(${red}, ${green}, ${blue})` }}
           ></div>
           <div className="reveal" ref={btnRef}>
-            <span
-              onClick={reveal}
-              style={{ display: revealed ? "none" : "inline" }}
-            >
-              Show
+            <span style={{ display: revealed ? "none" : "inline" }}>
+              RGB ( ?, ?, ?)
             </span>
             <input
               type="text"
@@ -86,27 +126,32 @@ const ColourGuess = () => {
               name="Red"
               className="my-guess"
               placeholder="R"
-              onChange={(e) => setPlayerred(e.target.value)}
+              onChange={(e) => handleInputChange(e, setPlayerred)}
             />
             <input
               type="text"
               name="Green"
               className="my-guess"
               placeholder="G"
-              onChange={(e) => setPlayergreen(e.target.value)}
+              onChange={(e) => handleInputChange(e, setPlayergreen)}
             />
             <input
               type="text"
               name="Blue"
               className="my-guess"
               placeholder="B"
-              onChange={(e) => setPlayerblue(e.target.value)}
+              onChange={(e) => handleInputChange(e, setPlayerblue)}
             />
           </div>
         </div>
       </div>
       <div className="button">
-        <button onClick={reset}>Another Colour ?</button>
+        <button onClick={match} style={{ display: over ? "none" : "block" }}>
+          Check Result{" "}
+        </button>
+        <button onClick={reset} style={{ display: over ? "block" : "none" }}>
+          Reset
+        </button>
       </div>
     </div>
   );

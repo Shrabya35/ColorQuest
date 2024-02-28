@@ -5,7 +5,7 @@ ColorQuest is a simple web-based game where players test their RGB color knowled
 ## Features
 
 - Randomly generated RGB color for players to guess.
-- Scoring Feture to check the % of match.
+- Scoring Feature to check the % of match.
 - Reset button to generate another random color.
 
 
